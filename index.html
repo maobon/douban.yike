@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>豆瓣一刻</title>
+    <title>me豆瓣一刻</title>
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="./less/main.css">
-    <!-- less.js 让less文件写的样式 可以即时编译 -->
-    <script src="./public/libs/less.js"></script>
+
+    <link rel="stylesheet" href="./public/less/main.css">
+    <!-- less.js 让less文件写的样式 可以即时编译 (Chrome57 不能支持)-->
+    <script src="./bower_components/less/dist/less.js"></script>
+
     <!-- AngularJS and AngularJS-Route -->
     <script src="./bower_components/angular/angular.min.js"></script>
     <script src="./bower_components/angular-route/angular-route.min.js"></script>
@@ -15,154 +17,48 @@
     <!-- 业务逻辑 -->
     <script src="./scripts/app.js"></script>
 </head>
-<body>
+
+<body ng-app="Yike">
 <div class="viewport">
     <!-- 侧边导航 -->
-    <div class="navs">
+    <div ng-class={navs:true,collapse:collapsed} ng-controller="NavsCtrl">
         <dl>
             <dt class="login">
             <div class="avatar">
-                <img src="./images/avatar.png" alt="">
+                <img src="./public/images/avatar.png" alt="">
             </div>
             <span>登录</span>
             </dt>
-            <dd class="active">
-                <a href="./index.html" class="icon-home">
-                    <span>今日一刻</span>
-                </a>
-            </dd>
-            <dd>
-                <a href="./older.html" class="icon-file-empty">
-                    <span>往期内容</span>
-                </a>
-            </dd>
-            <dd>
-                <a href="./author.html" class="icon-pencil">
-                    <span>热门作者</span>
-                </a>
-            </dd>
-            <dd>
-                <a href="./category.html" class="icon-menu">
-                    <span>栏目浏览</span>
-                </a>
-            </dd>
-            <dd>
-                <a href="./favourite.html" class="icon-heart">
-                    <span>我的喜欢</span>
-                </a>
-            </dd>
-            <dd>
-                <a href="./settings.html" class="icon-cog">
-                    <span>设置</span>
+
+            <!-- ng-repeat 根据modle数据 生成item -->
+            <dd class="active" ng-repeat="nav in navs" ng-click="toggle()">
+                <a href="{{nav.link}}" class="{{nav-icon}}">
+                    <span>{{nav.text}}</span>
                 </a>
             </dd>
         </dl>
+
         <div class="extra">
             <a href="javascript:" class="icon-image">夜晚</a>
             <a href="javascript:" class="icon-download">离线</a>
         </div>
     </div>
+
+    <!-- 正文 -->
     <div class="container">
         <!-- 头部 -->
-        <div class="header">
-            <a href="javascript:" class="menu icon-menu"></a>
+        <div ng-class={header:true,collapse:collapsed}>
+            <a href="javascript:" class="menu icon-menu" ng-click="toggle()"></a>
             <h2>今日一刻</h2>
             <a href="javascript:" class="search icon-search"></a>
         </div>
-        <!-- 主体 -->
-        <div class="body">
-            <div class="item">
-                <!-- 日期分类 -->
-                <div class="mark">13Aug</div>
-                <ul class="posts large">
-                    <!-- 文章 -->
-                    <li>
-                        <span href="javascript:" class="tag">去远方</span>
-                        <div class="cont">
-                            <h3>朝圣山南扎央宗--探索藏文化之源探索藏文化之源</h3>
-                            <div class="brief">
-                                <p class="only">
-                                    那里有个很窄的洞，钻进去曾是莲花生大师修行的地方，在藏民心中钻洞是为了洗清那里有个很窄的洞，钻进去曾是莲花生大师修行的地方，在藏民心中钻洞是为了洗清中钻洞是为了洗清那里有个很窄的洞，钻进去曾是莲花生大师修行的地方</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <span href="javascript:" class="tag">去远方</span>
-                        <div class="cont">
-                            <h3>朝圣山南扎央宗--探索藏文化之源探索藏文化之源探索藏文化之源</h3>
-                            <div class="brief">
-                                <p>那里有个很窄的洞，钻进去曾是莲花生大师修行的地方，在藏民心中钻洞是为了洗清</p>
-                                <div class="thumb">
-                                    <img src="./uploads/post_1.png" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <span href="javascript:" class="tag">去远方</span>
-                        <div class="cont">
-                            <h3>朝圣山南扎央宗--探索藏文化之源</h3>
-                            <div class="brief">
 
-                                <div class="gallery">
-                                    <img src="./uploads/post_2.png" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <span href="javascript:" class="tag">去远方</span>
-                        <div class="cont">
-                            <h3>朝圣山南扎央宗--探索藏文化之源探索藏文化之源探索藏文化之源</h3>
-                            <div class="brief">
-                                <p>那里有个很窄的洞，钻进去曾是莲花生大师修行的地方，在藏民心中钻洞是为了洗清</p>
-                                <div class="thumb">
-                                    <img src="./uploads/post_1.png" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <span href="javascript:" class="tag">去远方</span>
-                        <div class="cont">
-                            <h3>朝圣山南扎央宗--探索藏文化之源探索藏文化之源探索藏文化之源</h3>
-                            <div class="brief">
-                                <p>那里有个很窄的洞，钻进去曾是莲花生大师修行的地方，在藏民心中钻洞是为了洗清</p>
-                                <div class="thumb">
-                                    <img src="./uploads/post_1.png" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <span href="javascript:" class="tag">去远方</span>
-                        <div class="cont">
-                            <h3>朝圣山南扎央宗--探索藏文化之源探索藏文化之源探索藏文化之源</h3>
-                            <div class="brief">
-                                <p>那里有个很窄的洞，钻进去曾是莲花生大师修行的地方，在藏民心中钻洞是为了洗清</p>
-                                <div class="thumb">
-                                    <img src="./uploads/post_1.png" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <span href="javascript:" class="tag">去远方</span>
-                        <div class="cont">
-                            <h3>朝圣山南扎央宗--探索藏文化之源探索藏文化之源探索藏文化之源</h3>
-                            <div class="brief">
-                                <p>那里有个很窄的洞，钻进去曾是莲花生大师修行的地方，在藏民心中钻洞是为了洗清</p>
-                                <div class="thumb">
-                                    <img src="./uploads/post_1.png" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+        <!-- 主体 -->
+        <div ng-class={body:true,collapse:collapsed} ng-view>
+            <!-- 替换的视图放在此处 -->
         </div>
     </div>
 </div>
-<script src="./libs/toggle.js"></script>
+
 </body>
 </html>
