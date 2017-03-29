@@ -3,89 +3,34 @@
 <div class="item">
     <!-- 日期分类 -->
     <div class="mark">13Aug</div>
-    <ul class="posts large">
-        <!-- 文章 -->
-        <li>
-            <span href="javascript:" class="tag">去远方</span>
-            <div class="cont">
-                <h3>朝圣山南扎央宗--探索藏文化之源探索藏文化之源</h3>
-                <div class="brief">
-                    <p class="only">
-                        那里有个很窄的洞，钻进去曾是莲花生大师修行的地方，在藏民心中钻洞是为了洗清那里有个很窄的洞，钻进去曾是莲花生大师修行的地方，在藏民心中钻洞是为了洗清中钻洞是为了洗清那里有个很窄的洞，钻进去曾是莲花生大师修行的地方</p>
-                </div>
-            </div>
-        </li>
-        <li>
-            <span href="javascript:" class="tag">去远方</span>
-            <div class="cont">
-                <h3>朝圣山南扎央宗--探索藏文化之源探索藏文化之源探索藏文化之源</h3>
-                <div class="brief">
-                    <p>那里有个很窄的洞，钻进去曾是莲花生大师修行的地方，在藏民心中钻洞是为了洗清</p>
-                    <div class="thumb">
-                        <img src="./uploads/post_1.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li>
-            <span href="javascript:" class="tag">去远方</span>
-            <div class="cont">
-                <h3>朝圣山南扎央宗--探索藏文化之源</h3>
-                <div class="brief">
 
-                    <div class="gallery">
-                        <img src="./uploads/post_2.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li>
-            <span href="javascript:" class="tag">去远方</span>
+    <ul class="posts large">
+        <!-- 内容列表中的item -->
+        <li ng-repeat="item in list">
+
+            <span href="javascript:" class="tag" ng-if="item.column.name">{{item.column.name}}</span>
+
             <div class="cont">
-                <h3>朝圣山南扎央宗--探索藏文化之源探索藏文化之源探索藏文化之源</h3>
+                <h3>{{item.title}}</h3>
+
                 <div class="brief">
-                    <p>那里有个很窄的洞，钻进去曾是莲花生大师修行的地方，在藏民心中钻洞是为了洗清</p>
-                    <div class="thumb">
-                        <img src="./uploads/post_1.png" alt="">
+                    <!-- 10001 和 10002 -->
+                    <p ng-class={only:item.display_style==10001}
+                       ng-if="item.display_style != 10003">{{item.abstract}}</p>
+
+                    <!-- img的src属性 需要设置为 ng-src="" 放置浏览器默认加载 -->
+                    <!-- 10002 -->
+                    <div class="thumb" ng-if="item.display_style==10002">
+                        <img ng-src="{{item.thumbs[0].small.url}}" alt="">
+                    </div>
+
+                    <!-- 10003 -->
+                    <div class="gallery" ng-if="item.display_style==10003">
+                        <img ng-src="{{item.thumbs[0].small.url}}" alt="">
                     </div>
                 </div>
             </div>
         </li>
-        <li>
-            <span href="javascript:" class="tag">去远方</span>
-            <div class="cont">
-                <h3>朝圣山南扎央宗--探索藏文化之源探索藏文化之源探索藏文化之源</h3>
-                <div class="brief">
-                    <p>那里有个很窄的洞，钻进去曾是莲花生大师修行的地方，在藏民心中钻洞是为了洗清</p>
-                    <div class="thumb">
-                        <img src="./uploads/post_1.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li>
-            <span href="javascript:" class="tag">去远方</span>
-            <div class="cont">
-                <h3>朝圣山南扎央宗--探索藏文化之源探索藏文化之源探索藏文化之源</h3>
-                <div class="brief">
-                    <p>那里有个很窄的洞，钻进去曾是莲花生大师修行的地方，在藏民心中钻洞是为了洗清</p>
-                    <div class="thumb">
-                        <img src="./uploads/post_1.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li>
-            <span href="javascript:" class="tag">去远方</span>
-            <div class="cont">
-                <h3>朝圣山南扎央宗--探索藏文化之源探索藏文化之源探索藏文化之源</h3>
-                <div class="brief">
-                    <p>那里有个很窄的洞，钻进去曾是莲花生大师修行的地方，在藏民心中钻洞是为了洗清</p>
-                    <div class="thumb">
-                        <img src="./uploads/post_1.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </li>
+
     </ul>
 </div>

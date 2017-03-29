@@ -22,7 +22,8 @@ angular.module('Ctrls', [])
             url: 'api/today.php'
 
         }).then(function (res) {
-            console.log(res.data);
+            console.log(res.data.posts);
+            $scope.list = res.data.posts;
         });
 
 
