@@ -6,8 +6,9 @@
     <title>me豆瓣一刻</title>
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
 
-    <link rel="stylesheet" href="./public/less/main.css">
-    <!-- less.js 让less文件写的样式 可以即时编译 (Chrome57 不能支持)-->
+    <!-- rel="stylesheet/less" 必须这样写才可以支持less即时编译 -->
+    <link rel="stylesheet/less" href="./public/less/main.less">
+    <!-- less.js 让less文件写的样式 可以即时编译 -->
     <script src="./bower_components/less/dist/less.js"></script>
 
     <!-- AngularJS and AngularJS-Route -->
@@ -32,7 +33,7 @@
 
             <!-- ng-repeat 根据modle数据 生成item -->
             <dd class="active" ng-repeat="nav in navs" ng-click="toggle()">
-                <a href="{{nav.link}}" class="{{nav-icon}}">
+                <a href="{{nav.link}}" class="{{nav.icon}}">
                     <span>{{nav.text}}</span>
                 </a>
             </dd>
