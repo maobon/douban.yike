@@ -7,7 +7,7 @@
         "ssl"=>array(
             "verify_peer"=>false,
             "verify_peer_name"=>false,
-        ),
+        )
     );
 
     // PHP获取当前系统时间
