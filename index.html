@@ -17,11 +17,13 @@
 
     <!-- 业务逻辑 -->
     <script src="./scripts/app.js"></script>
+    <script src="./scripts/controllers.js"></script>
 </head>
 
 <body ng-app="Yike">
 <div class="viewport">
-    <!-- 侧边导航 -->
+
+    <!-- 侧边导航  ng-controller="NavsCtrl" -->
     <div ng-class={navs:true,collapse:collapsed} ng-controller="NavsCtrl">
         <dl>
             <dt class="login">
@@ -47,7 +49,7 @@
 
     <!-- 正文 -->
     <div class="container">
-        <!-- 头部 -->
+        <!-- 头部 TitleBar -->
         <div ng-class={header:true,collapse:collapsed}>
             <a href="javascript:" class="menu icon-menu" ng-click="toggle()"></a>
             <h2>今日一刻</h2>

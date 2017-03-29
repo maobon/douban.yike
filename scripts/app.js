@@ -6,7 +6,7 @@
 /**
  * 创建模块
  */
-var Yike = angular.module('Yike', ['ngRoute']);
+var Yike = angular.module('Yike', ['ngRoute', 'Ctrls']);
 
 /**
  * 配置AngularJS路由
@@ -16,7 +16,7 @@ Yike.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/today', {
         // 今日一刻
         templateUrl: './views/today.html',
-        // controller: ''
+        controller: 'TodayCtrl'
 
     }).when('/older', {
         // 往期内容
@@ -56,23 +56,35 @@ Yike.run(['$rootScope', function ($rootScope) {
     $rootScope.toggle = function () {
         // 切换类名
         $rootScope.collapsed = !$rootScope.collapsed;
+
+        var navs = document.querySelectorAll('.navs dd');
+
+        if ($rootScope.collapsed) {
+            //  -> 右 transform:translateX(到0)
+            // 初始位置在屏幕左侧向左偏移出自身的宽度 展开侧面导航菜单为平移到进入屏幕
+            // 过渡属性 每个间隔0.15s 同时整体动画延迟0.3秒 让侧面边栏先于item平移前展开
+            for (var i = 0; i < navs.length; i++) {
+                navs[i].style.transform = "translate(0)";
+                navs[i].style.transitionDuration = 0.15 * (i + 1) + "s";
+                navs[i].style.transitionDelay = "0.3s";
+            }
+        } else {
+            for (var j = navs.length - 1; j >= 0; j--) {
+                // 左 <- 向左偏移收起侧面的导航栏
+                // 导航选项item 从底部开始遍历 每个间隔0.15s 同时去掉延迟
+                navs[j].style.transform = "translate(-100%)";
+                navs[j].style.transitionDuration = 0.15 * (navs.length - j) + "s";
+                navs[j].style.transitionDelay = "";
+            }
+        }
+
+
     }
 }]);
 
-/**
- * 左侧导航栏 控制器
- */
-Yike.controller('NavsCtrl', ['$scope', function ($scope) {
 
-    // 数据与视图分离
-    $scope.navs = [
-        {text: '今日一刻', icon: 'icon-home', link: '#!/today'},
-        {text: '往期内容', icon: 'icon-file-empty', link: '#!/older'},
-        {text: '热门作者', icon: 'icon-pencil', link: '#!/author'},
-        {text: '栏目浏览', icon: 'icon-menu', link: '#!/category'},
-        {text: '设置', icon: 'icon-cog', link: '#!/settings'},
-    ];
-}]);
+
+
 
 
 
