@@ -18,13 +18,13 @@ angular.module('Ctrls', [])
 
     .controller('TodayCtrl', ['$scope', '$http', '$rootScope', '$filter',
         function ($scope, $http, $rootScope, $filter) {
-
+            // 通过根作用域 设置标题
             $rootScope.title = '今日一刻';
 
             // 使用Angular内置服务 过滤器服务 格式化当前时间
             var date = $filter('date')(new Date(), 'yyyy-MM-dd');
 
-            // reset flag
+            // reset loading flag
             $rootScope.isLoaded = false;
 
             // request data
@@ -42,13 +42,14 @@ angular.module('Ctrls', [])
 
     .controller('OlderCtrl', ['$scope', '$http', '$rootScope', '$filter',
         function ($scope, $http, $rootScope, $filter) {
-
+            // 通过根作用域 设置标题
             $rootScope.title = '往期内容';
 
             // 使用Angular内置服务 过滤器服务 格式化当前时间
-            var date = $filter('date')(new Date(), 'yyyy-MM-dd');
+            var yesterday = new Date() - (1000 * 60 * 60 * 24);
+            var date = $filter('date')(yesterday, 'yyyy-MM-dd');
 
-            // reset flag
+            // reset loading flag
             $rootScope.isLoaded = false;
 
             // request data
