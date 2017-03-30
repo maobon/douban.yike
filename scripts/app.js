@@ -26,17 +26,17 @@ Yike.config(['$routeProvider', function ($routeProvider) {
     }).when('/author', {
         // 热门作者
         templateUrl: './views/author.html',
-        // controller: ''
+        controller: 'HotAuthorCtrl'
 
     }).when('/category', {
         // 栏目浏览
         templateUrl: './views/category.html',
-        // controller: ''
+        controller: 'CategoryCtrl'
 
     }).when('/settings', {
         // 设置
         templateUrl: './views/settings.html',
-        // controller: ''
+        controller: 'SettingsCtrl'
 
     }).otherwise({
         // 默认页面

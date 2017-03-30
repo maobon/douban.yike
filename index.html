@@ -39,7 +39,7 @@
             </dt>
 
             <!-- ng-repeat 根据modle数据 生成item -->
-            <dd class="active" ng-repeat="nav in navs" ng-click="toggle()">
+            <dd ng-class={active:pos==$index} ng-repeat="nav in navs" ng-click="toggle()">
                 <a href="{{nav.link}}" class="{{nav.icon}}">
                     <span>{{nav.text}}</span>
                 </a>
