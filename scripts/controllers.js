@@ -16,39 +16,53 @@ angular.module('Ctrls', [])
         ];
     }])
 
-    .controller('TodayCtrl', ['$scope', '$http', '$rootScope', function ($scope, $http, $rootScope) {
-        // reset flag
-        $rootScope.isLoaded = false;
+    .controller('TodayCtrl', ['$scope', '$http', '$rootScope', '$filter',
+        function ($scope, $http, $rootScope, $filter) {
 
-        // request data
-        $http({
-            method: 'get',
-            url: 'api/today.php'
-        }).then(function (res) {
-            // console.log(res.data.posts);
+            $rootScope.title = '今日一刻';
 
-            // 请求数据成功
-            $rootScope.isLoaded = true;
-            $scope.list = res.data.posts;
-        });
-    }])
+            // 使用Angular内置服务 过滤器服务 格式化当前时间
+            var date = $filter('date')(new Date(), 'yyyy-MM-dd');
 
-    .controller('OlderCtrl', ['$scope', '$http', '$rootScope', function ($scope, $http, $rootScope) {
-        // reset flag
-        $rootScope.isLoaded = false;
+            // reset flag
+            $rootScope.isLoaded = false;
 
-        // request data
-        $http({
-            method: 'get',
-            url: 'api/older.php',
-            params: {
-                day: '-1'
-            }
-        }).then(function (res) {
-            // console.log(res.data.posts);
+            // request data
+            $http({
+                method: 'get',
+                url: 'api/today.php'
+            }).then(function (res) {
+                // 请求数据成功
+                $rootScope.isLoaded = true;
 
-            // 请求数据成功
-            $rootScope.isLoaded = true;
-            $scope.list = res.data.posts;
-        });
-    }]);
+                $scope.list = res.data.posts;
+                $scope.date = date;
+            });
+        }])
+
+    .controller('OlderCtrl', ['$scope', '$http', '$rootScope', '$filter',
+        function ($scope, $http, $rootScope, $filter) {
+
+            $rootScope.title = '往期内容';
+
+            // 使用Angular内置服务 过滤器服务 格式化当前时间
+            var date = $filter('date')(new Date(), 'yyyy-MM-dd');
+
+            // reset flag
+            $rootScope.isLoaded = false;
+
+            // request data
+            $http({
+                method: 'get',
+                url: 'api/older.php',
+                params: {
+                    day: '-1'
+                }
+            }).then(function (res) {
+                // 请求数据成功
+                $rootScope.isLoaded = true;
+
+                $scope.list = res.data.posts;
+                $scope.date = date;
+            });
+        }]);
