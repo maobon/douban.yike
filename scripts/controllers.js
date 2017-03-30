@@ -15,14 +15,16 @@ angular.module('Ctrls', [])
         ];
     }])
 
-    .controller('TodayCtrl', ['$scope', '$http', function ($scope, $http) {
+    .controller('TodayCtrl', ['$scope', '$http', '$rootScope', function ($scope, $http, $rootScope) {
 
         $http({
             method: 'get',
             url: 'api/today.php'
 
         }).then(function (res) {
-            console.log(res.data.posts);
+            // console.log(res.data.posts);
+            $rootScope.isLoaded = true;
+
             $scope.list = res.data.posts;
         });
 

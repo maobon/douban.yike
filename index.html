@@ -19,7 +19,10 @@
 
     <!-- 业务逻辑 -->
     <script src="./scripts/app.js"></script>
+    <!-- controllers -->
     <script src="./scripts/controllers.js"></script>
+    <!-- directives -->
+    <script src="./scripts/directives.js"></script>
 </head>
 
 <body ng-app="Yike">
@@ -49,7 +52,7 @@
         </div>
     </div>
 
-    <!-- 正文 -->
+    <!-- 容器 -->
     <div class="container">
         <!-- 头部 TitleBar -->
         <div ng-class={header:true,collapse:collapsed}>
@@ -58,9 +61,15 @@
             <a href="javascript:" class="search icon-search"></a>
         </div>
 
-        <!-- 主体 -->
-        <div ng-class={body:true,collapse:collapsed} ng-view>
-            <!-- 替换的视图放在此处 -->
+        <!-- 内容主体  -->
+        <div ng-class={body:true,collapse:collapsed}>
+            <!-- loadingBar -->
+            <div loading-bar></div>
+
+            <!-- AngularJS视图替换的部分 ng-view -->
+            <div ng-view>
+
+            </div>
         </div>
     </div>
 </div>

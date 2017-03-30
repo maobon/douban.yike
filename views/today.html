@@ -18,7 +18,7 @@
                     <p ng-class={only:item.display_style==10001}
                        ng-if="item.display_style != 10003">{{item.abstract}}</p>
 
-                    <!-- img的src属性 需要设置为 ng-src="" 放置浏览器默认加载 -->
+                    <!-- img的src属性 需要设置为 ng-src="" 防止浏览器默认加载 -->
                     <!-- 10002 -->
                     <div class="thumb" ng-if="item.display_style==10002">
                         <img ng-src="{{item.thumbs[0].small.url}}" alt="">

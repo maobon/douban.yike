@@ -6,7 +6,7 @@
 /**
  * 创建模块
  */
-var Yike = angular.module('Yike', ['ngRoute', 'Ctrls']);
+var Yike = angular.module('Yike', ['ngRoute', 'Ctrls', 'Directives']);
 
 /**
  * 配置AngularJS路由
@@ -53,12 +53,16 @@ Yike.run(['$rootScope', function ($rootScope) {
     // 设置变量用于控制类名
     $rootScope.collapsed = false;
 
+    // 是否已经加载完成(标志位)
+    $rootScope.isLoaded = false;
+
+    // 侧边导航栏的收起与展开
     $rootScope.toggle = function () {
         // 切换类名
         $rootScope.collapsed = !$rootScope.collapsed;
 
+        // 导航栏items的动画
         var navs = document.querySelectorAll('.navs dd');
-
         if ($rootScope.collapsed) {
             //  -> 右 transform:translateX(到0)
             // 初始位置在屏幕左侧向左偏移出自身的宽度 展开侧面导航菜单为平移到进入屏幕
@@ -77,9 +81,8 @@ Yike.run(['$rootScope', function ($rootScope) {
                 navs[j].style.transitionDelay = "";
             }
         }
-
-
     }
+
 }]);
 
 
