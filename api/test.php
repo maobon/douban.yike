@@ -2,14 +2,15 @@
 
     // 使用time()函数可以获取当前服务器的时间（时间戳）
 
+    // 获取当前系统事件 毫秒
     // echo time();
 
-    // echo '<br />';
-
+    // 获取当前系统时间 转换成日期格式
     // echo date('Y-m-d H:i:s', time());
+    // echo date('Y-m-d', time());
 
-    // 
-    // echo date('Y-m-d', strtotime('-2month'));
+    // 获取前一天的日期
+    // echo date('Y-m-d', strtotime('-1day'));
     
     // 可以获取PHP的详细信息，包括目录，所支持的扩展等很多信息
     // phpinfo();

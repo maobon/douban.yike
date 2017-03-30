@@ -1,5 +1,6 @@
 /**
  * Created by xinbob on 3/29/17.
+ * 控制器模块
  */
 
 angular.module('Ctrls', [])
@@ -16,17 +17,38 @@ angular.module('Ctrls', [])
     }])
 
     .controller('TodayCtrl', ['$scope', '$http', '$rootScope', function ($scope, $http, $rootScope) {
+        // reset flag
+        $rootScope.isLoaded = false;
 
+        // request data
         $http({
             method: 'get',
             url: 'api/today.php'
-
         }).then(function (res) {
             // console.log(res.data.posts);
-            $rootScope.isLoaded = true;
 
+            // 请求数据成功
+            $rootScope.isLoaded = true;
             $scope.list = res.data.posts;
         });
+    }])
 
+    .controller('OlderCtrl', ['$scope', '$http', '$rootScope', function ($scope, $http, $rootScope) {
+        // reset flag
+        $rootScope.isLoaded = false;
 
+        // request data
+        $http({
+            method: 'get',
+            url: 'api/older.php',
+            params: {
+                day: '-1'
+            }
+        }).then(function (res) {
+            // console.log(res.data.posts);
+
+            // 请求数据成功
+            $rootScope.isLoaded = true;
+            $scope.list = res.data.posts;
+        });
     }]);

@@ -21,7 +21,7 @@ Yike.config(['$routeProvider', function ($routeProvider) {
     }).when('/older', {
         // 往期内容
         templateUrl: './views/older.html',
-        // controller: ''
+        controller: 'OlderCtrl'
 
     }).when('/author', {
         // 热门作者
