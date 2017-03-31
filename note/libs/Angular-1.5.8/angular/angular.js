@@ -25659,15 +25659,18 @@
  *     $scope.greet = function() {
  *       alert($scope.name);
  *     };
+
  *
  *     $scope.addContact = function() {
  *       $scope.contacts.push({type:'email', value:'yourname@example.org'});
  *     };
+
  *
  *     $scope.removeContact = function(contactToRemove) {
  *       var index = $scope.contacts.indexOf(contactToRemove);
  *       $scope.contacts.splice(index, 1);
  *     };
+
  *
  *     $scope.clearContact = function(contact) {
  *       contact.type = 'phone';
