@@ -12,6 +12,7 @@ var gulp = require('gulp');
 var less = require('gulp-less');
 var cssmin = require('gulp-cssmin');
 var autoprefixer = require('gulp-autoprefixer');
+var imagemin = require('gulp-imagemin');
 
 /**
  * 设置gulp的任务
@@ -30,6 +31,17 @@ gulp.task('less2css', function () {
         .pipe(gulp.dest('./release/public/css'));
 
 });
+
+/**
+ * 处理图片的任务
+ */
+gulp.task('image', function () {
+    gulp.src(['./public/images/**/*', './uploads/*'], {base: './'})
+        .pipe(imagemin())
+        .pipe(gulp.dest('./release/'));
+})
+
+
 
 
 
