@@ -9,20 +9,32 @@
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
     <!-- ** 注意 ** -->
     <!-- rel="stylesheet/less" 必须这样写才可以支持less即时编译 -->
+    <!-- 技巧 -->
+    <!-- build:css ./public/css/main.css -->
     <link rel="stylesheet/less" href="./public/less/main.less">
+    <!-- endbuild -->
+
+    <!-- build:remove -->
     <!-- less.js 让less文件写的样式 可以即时编译 -->
     <script src="./bower_components/less/dist/less.js"></script>
+    <!-- endbuild -->
+
+    <!-- js文件使用useref进行合并 下面的注释写法是为了给useref使用的 -->
 
     <!-- AngularJS and AngularJS-Route -->
+    <!-- build:js ./libs/angular.min.js -->
     <script src="./bower_components/angular/angular.min.js"></script>
     <script src="./bower_components/angular-route/angular-route.min.js"></script>
+    <!-- endbuild -->
 
     <!-- 业务逻辑 -->
+    <!-- build:js scripts/app.js -->
     <script src="./scripts/app.js"></script>
     <!-- controllers 控制器模块 -->
     <script src="./scripts/controllers.js"></script>
     <!-- directives 指令模块 -->
     <script src="./scripts/directives.js"></script>
+    <!-- endbuild -->
 </head>
 
 <body ng-app="Yike">
