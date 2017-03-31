@@ -1,5 +1,6 @@
 /**
  * Created by xinbob on 3/29/17.
+ * App核心模块
  * 业务逻辑 AngularJS-Route 路由
  */
 
@@ -12,6 +13,10 @@ var Yike = angular.module('Yike', ['ngRoute', 'Ctrls', 'Directives']);
  * 配置AngularJS路由
  * templateUrl 的起始出发点 从引入app.js的位置开始算起
  * app.js文件被index.html引入
+ *
+ * 路由中的参数
+ * templateUrl 模板视图
+ * controller 控制器
  */
 Yike.config(['$routeProvider', function ($routeProvider) {
 
