@@ -1,7 +1,7 @@
 ###豆瓣一刻 webApp with AngularJS
 
 *    今日一刻
-![](./public/images/pictures/IMG_0265.PNG)
+<img src="./public/images/pictures/IMG_0267.png" width="150" height="200" alt=""/>
 
 *    往期内容
 ![](./public/images/pictures/IMG_0267.PNG)
