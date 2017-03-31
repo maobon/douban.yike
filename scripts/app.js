@@ -10,6 +10,8 @@ var Yike = angular.module('Yike', ['ngRoute', 'Ctrls', 'Directives']);
 
 /**
  * 配置AngularJS路由
+ * templateUrl 的起始出发点 从引入app.js的位置开始算起
+ * app.js文件被index.html引入
  */
 Yike.config(['$routeProvider', function ($routeProvider) {
 
