@@ -98,7 +98,9 @@ angular.module('Ctrls', [])
             }).then(function (res) {
                 // 请求数据成功
                 $rootScope.isLoaded = true;
-                $scope.list = res.data.authors;
+                // 数据放置到model上
+                $scope.rec = res.data.rec.authors;
+                $scope.all = res.data.all.authors;
 
                 // 点击跳转
                 $scope.locationHandler = function (url) {

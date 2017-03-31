@@ -1,7 +1,5 @@
 <?php
-
     // 本页面需要让PHP同时发送两次请求
-    
     header('Content-Type: application/json');
 
     // PHP 5.6 HTTPS 特别配置
@@ -12,10 +10,8 @@
         )
     );
 
-
     // 热门作者(推荐)
     // $recUrl = 'https://moment.douban.com/api/auth_authors/rec?alt=json&apikey=0bcf52793711959c236df76ba534c0d4&app_version=1.7.4&count=20&douban_udid=d623045db9fcb0d5243174c1bf1a675f887047c0&start=0&udid=9a34d8b038ff38971050199b0c5ee9c60c6d1ca3&version=6';
-
     // 热门作者(全部)
     // $allUrl = 'https://moment.douban.com/api/auth_authors/all?alt=json&apikey=0bcf52793711959c236df76ba534c0d4&app_version=1.7.4&count=20&douban_udid=d623045db9fcb0d5243174c1bf1a675f887047c0&start=0&udid=9a34d8b038ff38971050199b0c5ee9c60c6d1ca3&version=6';
 
@@ -30,11 +26,18 @@
     // 最终输出的是一个 JSONArray 里面的两个元素是两个标准的JSONObject
 
     // 请求地址
+    // 热门作者(推荐)
+    $recUrl = 'https://moment.douban.com/api/auth_authors/rec?alt=json&apikey=0bcf52793711959c236df76ba534c0d4&app_version=1.7.4&count=20&douban_udid=d623045db9fcb0d5243174c1bf1a675f887047c0&start=0&udid=9a34d8b038ff38971050199b0c5ee9c60c6d1ca3&version=6';
+    // 热门作者(全部)
+    $allUrl = 'https://moment.douban.com/api/auth_authors/all?alt=json&apikey=0bcf52793711959c236df76ba534c0d4&app_version=1.7.4&count=20&douban_udid=d623045db9fcb0d5243174c1bf1a675f887047c0&start=0&udid=9a34d8b038ff38971050199b0c5ee9c60c6d1ca3&version=6';
 
-    $url = 'https://moment.douban.com/api/auth_authors/rec?alt=json&apikey=0bcf52793711959c236df76ba534c0d4&app_version=1.7.4&count=20&douban_udid=d623045db9fcb0d5243174c1bf1a675f887047c0&start=0&udid=9a34d8b038ff38971050199b0c5ee9c60c6d1ca3&version=6';
+    $recResult = file_get_contents($recUrl, false, stream_context_create($arrContextOptions));
+    $allResult = file_get_contents($allUrl, false, stream_context_create($arrContextOptions));
 
-    $response = file_get_contents($url, false, stream_context_create($arrContextOptions));
+    $recResult = json_decode($recResult, true);
+    $allResult = json_decode($allResult, true);
 
-    echo $response;
+    $result = array('rec'=>$recResult, 'all'=>$allResult);
 
+    echo json_encode($result);
 ?>

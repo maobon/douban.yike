@@ -1,9 +1,22 @@
 <!-- 热门作者 -->
 
 <dl class="author">
-    <dt ng-show="isLoaded">本周推荐</dt>
 
-    <dd ng-repeat="item in list" ng-click="locationHandler(item.url)">
+    <!-- 本周推荐 -->
+    <dt ng-show="isLoaded">本周推荐</dt>
+    <dd ng-repeat="item in rec" ng-click="locationHandler(item.url)">
+        <div class="avatar">
+            <img ng-src="{{item.avatar}}" alt="">
+        </div>
+        <div class="info">
+            <h5>{{item.name}}</h5>
+            <p>{{item.editor_notes}}</p>
+        </div>
+    </dd>
+
+    <!-- 热门作者 -->
+    <dt ng-show="isLoaded">热门作者</dt>
+    <dd ng-repeat="item in all">
         <div class="avatar">
             <img ng-src="{{item.avatar}}" alt="">
         </div>
