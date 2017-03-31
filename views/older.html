@@ -8,7 +8,7 @@
         <!-- 文章 -->
         <li ng-repeat="item in list">
             <!-- 顶部TAG灰色标签-->
-            <span ng-if="item.column.name" href="javascript:" class="tag">{{item.column.name}}</span>
+            <span ng-if="item.column.name" href="javascript:;" class="tag">{{item.column.name}}</span>
 
             <div class="cont">
                 <!-- 标题 -->
@@ -16,8 +16,7 @@
 
                 <div class="brief">
                     <!-- 10001 10002 有此内容 -->
-                    <p ng-class={only:item.display_style==10001}
-                       ng-if="item.display_style != 10003">{{item.abstract}}</p>
+                    <p ng-class={only:item.display_style==10001} ng-if="item.display_style != 10003">{{item.abstract}}</p>
 
                     <!-- 10003 有此内容 -->
                     <div ng-if="item.display_style == 10003" class="gallery">

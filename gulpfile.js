@@ -8,32 +8,33 @@
 // 1. 引入Gulp
 var gulp = require('gulp'),
 
-    // css
+    // CSS
     // less -> css -> autoperfix -> mincss ->
     less = require('gulp-less'),
     cssmin = require('gulp-cssmin'),
     autoprefixer = require('gulp-autoprefixer'),
-    // 监控内容的变化 生成新的内容
+    // 监控内容的变化 生成新的内容 (防止浏览器缓存 资源路径后面会补一段MD5生成的额指纹)
     rev = require('gulp-rev'),
-    // 改名字
+    // 改名字 改的是最后生成的记录的资源原始名称与随机补的后缀后的新名称之间的对应关系 rev.manifest()方法
     rename = require('gulp-rename'),
 
-    // 处理图片
+    // 处理image 压缩图片
     imagemin = require('gulp-imagemin'),
 
     // 处理js
-    useref = require('gulp-useref'),
-    uglify = require('gulp-uglify'),
-    gulpif = require('gulp-if'),
+    useref = require('gulp-useref'), // 合并多个js文件并改名
+    uglify = require('gulp-uglify'), // 压缩乱序js
+    gulpif = require('gulp-if'), // 因为是直接对html文件进行操作 uglify处理不了css的引用 需要在html文件中写一下注释(注释里面判断)
 
     // 处理html
-    htmlmin = require('gulp-htmlmin'),
+    htmlmin = require('gulp-htmlmin'), // 压缩去空格换行之类的
 
+    // final
     // 修改路径 单页面应用SPA 只修改index.html中的路径就可以了
-    revCollector = require('gulp-revCollector');
+    revCollector = require('gulp-rev-collector');
 
 
-//2. 处理css
+// 2. 处理css
 gulp.task('css', function () {
 
     return gulp.src('./public/less/main.less') // 写main.less的路径即可
@@ -48,7 +49,7 @@ gulp.task('css', function () {
 });
 
 
-//3. 处理image
+// 3. 处理image
 gulp.task('image', function () {
     // 图片分布在两个路径中 写个数组
     return gulp.src(['./public/images/**/*', './uploads/*'], {base: './'})
@@ -62,7 +63,7 @@ gulp.task('image', function () {
 });
 
 
-//4. 处理js
+// 4. 处理js
 // 合并html文件中的js文件
 gulp.task('useref', function () {
 
@@ -77,7 +78,7 @@ gulp.task('useref', function () {
 });
 
 
-//5. 处理html
+// 5. 处理html
 gulp.task('html', function () {
 
     gulp.src('./views/*.html')
@@ -89,17 +90,18 @@ gulp.task('html', function () {
 
 
 // 其他 php fonts favicon 一起处理
-//6. 只移动就好了 不用处理
+// 6. 只移动就好了 不用处理
 gulp.task('other', function () {
 
     gulp.src(['./api/*.php', './public/fonts/*', './favicon.ico'], {base: './'})
-        .pipe(gulp.dest('./release/'));
+        .pipe(gulp.dest('./release'));
 });
 
 
-//7. 替换路径
+// 7. 替换路径
 // index.html 里面的路径是错的 下面开始替换
 // 上面的任务添加return 依赖关系检查返回值 只有拿到前一个的返回值才会继续向下进行
+// index文件引用资源路径
 gulp.task('rev', ['css', 'useref', 'image'], function () {
 
     // 替换需要依据 就是rev下面的文件
@@ -108,7 +110,7 @@ gulp.task('rev', ['css', 'useref', 'image'], function () {
         .pipe(gulp.dest('./release'));
 });
 
-//8. gulp构建入口
+// 8. gulp构建入口
 // task() 可以写三个参数 中间的数组是依赖 执行a的话
 // 首先会把数组中的任务都执行
 
